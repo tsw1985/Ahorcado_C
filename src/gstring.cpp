@@ -6,7 +6,12 @@
 int *indexOf(char *wordToSearch , char *letter){
 
     int *ocurrencesList = NULL;
-    ocurrencesList = (int*) calloc(1 , sizeof(int));
+    ocurrencesList = (int*) calloc(sizeof(wordToSearch) , sizeof(int));
+    //set to -1 all matchs
+    for(int i=0 ; i < (int)strlen(wordToSearch) ; i++){
+        ocurrencesList[i] = -1;
+    }
+
     int position = -1;
     int index = 0;
     for(int i=0 ; i < (int)strlen(wordToSearch) ; i++){
@@ -15,12 +20,11 @@ int *indexOf(char *wordToSearch , char *letter){
 
         if(wordToSearch[i] == letter[0]) {
             position = i;
-            printf("POSICIONES ENCONTRADAS %d\n",position);
+            //printf("POSICIONES ENCONTRADAS %d\n",position);
             //add match on list
-            ocurrencesList = (int*)realloc(ocurrencesList,1 * sizeof(int));
+            //ocurrencesList = (int*)realloc(ocurrencesList,1 * sizeof(int));
             ocurrencesList[index] = position;
             index++;
-            position = -1;
         }
 
     }
