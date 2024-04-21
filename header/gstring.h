@@ -1,0 +1,1 @@
+int *indexOf(char *wordToSearch , char *letter);
