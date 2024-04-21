@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "../header/gstring.h"
 
-int *indexOf(char *wordToSearch , char *letter){
+int *index_of(char *wordToSearch , char *letter){
 
     int *ocurrencesList = NULL;
     ocurrencesList = (int*) calloc(sizeof(wordToSearch) , sizeof(int));
@@ -15,9 +15,6 @@ int *indexOf(char *wordToSearch , char *letter){
     int position = -1;
     int index = 0;
     for(int i=0 ; i < (int)strlen(wordToSearch) ; i++){
-        
-        //printf("LETRA [%c]-[%d]--->[%d]\n",wordToSearch[i],wordToSearch[i],letter[0]);
-
         if(wordToSearch[i] == letter[0]) {
             position = i;
             //printf("POSICIONES ENCONTRADAS %d\n",position);
@@ -30,4 +27,15 @@ int *indexOf(char *wordToSearch , char *letter){
     }
 
     return ocurrencesList;
+}
+
+int exists_char_on_string(char *string_to_search, char *letter){
+    int exists = -1;
+    for(int i=0 ; i < (int)strlen(string_to_search) ; i++){
+        if (string_to_search[i] == letter[0]){
+            exists = 0;
+            break;
+        }
+    }
+    return exists;
 }
