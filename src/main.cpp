@@ -3,6 +3,9 @@
 #include <string.h>
 #include "../header/gstring.h"
 
+#define TRUE 1
+#define FALSE 0 
+
 int main(int argc, char const *argv[])
 {
 
@@ -17,29 +20,45 @@ int main(int argc, char const *argv[])
     printf("%s\n",wordToShow);
 
 
-    //int lifes = 5;
-    //while(lifes > 0){
+    int lifes = 5;
+    int *matchsList = NULL;
+    while(lifes > 0){
 
         char letter[2];
-        printf("?:->\n ");
+        printf("?:->\n");
         fgets(letter,sizeof(letter),stdin);
+        letter[strcspn(letter, "\n")] = '\0'; // Elimina el carácter de nueva línea
         letter[strcspn(letter, "\n")] = '\0'; // Elimina el carácter de nueva línea
 
         //list of matchs
-        int *matchsList = indexOf(wordToPlay,letter);
+        matchsList = indexOf(wordToPlay,letter);
         if(matchsList != NULL){
-            for(int index_match_list = 0 ; index_match_list < (int)sizeof(matchsList) ; index_match_list++){
+
+            int exists_match = 0;
+            for(int index_match_list = 0 ; index_match_list < (int)sizeof(matchsList) / (int)sizeof(matchsList[0]) ; index_match_list++){
                     int match = matchsList[index_match_list];
-                    if(index_match_list != -1){
+                    if(match != -1){
+                        exists_match = 1;
                         wordToShow[match] = letter[0];
                     }
             }
+
+            if(exists_match == 0){
+                lifes--;
+                printf("PERDISTE, te quedan %d oportunidades\n",lifes);
+            }
+
+
         }
 
         printf("Sigue jugando ...\n");
         printf("%s\n",wordToShow);
-        free(matchsList);
+        
  
-    //};
+    };
+
+    free(matchsList);
+
+
     return 0;
 }
