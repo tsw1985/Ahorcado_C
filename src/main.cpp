@@ -12,8 +12,8 @@ int main(int argc, char const *argv[])
 
     system("clear");
     printf("Bienvenido al juego del ahorcado. Tienes 5 oportunidades. Introduce una palabra: ");
-    char word_to_play[50];
-    char word_to_show[50];
+    char word_to_play[200];
+    char word_to_show[200];
     int total_chars = 0;
 
     scanf("%s",word_to_play);

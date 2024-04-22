@@ -7,10 +7,6 @@ int_array *index_of(char *word_to_search , char *letter)
 {
 
     int_array *_int_array;
-    _int_array->array_pointer = (int*) calloc(1, sizeof(int));
-    _int_array->size = 0;
-
-
     int total_chars = strlen(word_to_search);
 
     // set size of list.
