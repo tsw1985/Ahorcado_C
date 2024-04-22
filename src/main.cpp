@@ -16,13 +16,14 @@ int main(int argc, char const *argv[])
     int total_chars = 0;
 
     scanf("%s",word_to_play);
-    word_to_play[strcspn(word_to_play, "\n")] = '\0'; // remove end line before press enter key
+    //clean_world_end_rare_symbol(word_to_play);
+    //clean_world_end_rare_symbol(word_to_show);
+    word_to_play[strcspn(word_to_play, "\n")] = '\0';
     word_to_show[strcspn(word_to_play, "\0")] = '\0';
-
     word_to_show[strcspn(word_to_show, "\n")] = '\0';
     word_to_show[strcspn(word_to_show, "\0")] = '\0';
 
-    memset(word_to_show,'*',strlen(word_to_play));    // fill *
+    memset(word_to_show,'*',strlen(word_to_play));
 
     system("clear");
     total_chars = (int)strlen(word_to_show);
@@ -32,7 +33,7 @@ int main(int argc, char const *argv[])
     int lifes = 5;
     int win = 0;
     int end_game = 0;
-    int_array *matchsList = NULL;
+    int_array *matchs_list = NULL;
 
     
 
@@ -53,12 +54,12 @@ int main(int argc, char const *argv[])
          else
          {
 
-            matchsList = index_of(word_to_play,letter);
-            if(matchsList != NULL){
+            matchs_list = index_of(word_to_play,letter);
+            if(matchs_list != NULL){
                 
                 int exists_match = 0;
-                for(int index_match_list = 0 ; index_match_list < matchsList->size ; index_match_list++){
-                    int match = matchsList->array_pointer[index_match_list];
+                for(int index_match_list = 0 ; index_match_list < matchs_list->size ; index_match_list++){
+                    int match = matchs_list->array_pointer[index_match_list];
                     if(match != -1){
                         exists_match = 1;
                         word_to_show[match] = letter[0];
@@ -87,6 +88,6 @@ int main(int argc, char const *argv[])
         }
     };
 }
-    free(matchsList->array_pointer);
+    free(matchs_list->array_pointer);
     return 0;
 }
