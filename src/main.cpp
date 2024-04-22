@@ -7,7 +7,7 @@
 #define FALSE 0 
 
 //How to compile ? write "make clean ; make" . Later enter to /bin folder and play
-int main(int argc, char const *argv[])
+int main()
 {
     system("clear");
     printf("Bienvenido al juego del ahorcado. Tienes 5 oportunidades. Introduce una palabra: ");
@@ -16,8 +16,12 @@ int main(int argc, char const *argv[])
     int total_chars = 0;
 
     scanf("%s",word_to_play);
-    remove_tail_rare_symbols(word_to_play);
-    remove_tail_rare_symbols(word_to_show);
+    //remove_tail_rare_symbols(word_to_play);
+    //remove_tail_rare_symbols(word_to_show);
+
+    _p_remove_tail_rare_symbols(word_to_play);
+    _p_remove_tail_rare_symbols(word_to_show);
+
 
     memset(word_to_show,'*',strlen(word_to_play));
 
@@ -41,7 +45,8 @@ int main(int argc, char const *argv[])
         char letter[2];
         printf("Tienes %d oportunidades y vas por %d aciertos de %d. ¿letra?-> ",lifes,win,total_chars);
         scanf("%s",letter);
-        remove_tail_rare_symbols(letter);
+        //remove_tail_rare_symbols(letter);
+        _p_remove_tail_rare_symbols(letter);
 
          if (exists_char_on_string(word_to_show,letter) == 0)
          {

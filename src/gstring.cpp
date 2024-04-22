@@ -55,3 +55,9 @@ void remove_tail_rare_symbols(char _word[]) {
     _word[strcspn(_word, "\n")] = '\0';
     _word[strcspn(_word, "\0")] = '\0';
 }
+
+char *_p_remove_tail_rare_symbols(char *_word){
+    _word[strcspn(_word, "\n")] = '\0';
+    _word[strcspn(_word, "\0")] = '\0';
+    return _word;
+}
