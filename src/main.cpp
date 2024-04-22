@@ -10,14 +10,14 @@ int main(int argc, char const *argv[])
 {
 
     system("clear");
-    printf("Bienvenidoooo al juego del ahorcado. Tienes 5 oportunidades. Introduce una palabra: ");
+    printf("Bienvenido al juego del ahorcado. Tienes 5 oportunidades. Introduce una palabra: ");
     char wordToPlay[50];
     char wordToShow[50];
     int total_chars = 0;
 
     scanf("%s",wordToPlay);
-    memset(wordToShow,'*',strlen(wordToPlay)); // rellenamos de *
-    wordToPlay[strcspn(wordToPlay, "\n")] = '\0'; // Elimina el carácter de nueva línea
+    memset(wordToShow,'*',strlen(wordToPlay));    // fill *
+    wordToPlay[strcspn(wordToPlay, "\n")] = '\0'; // remove end line
 
     system("clear");
 
@@ -26,22 +26,21 @@ int main(int argc, char const *argv[])
     printf("Tienes que averiguar %d letras\n", total_chars);
     int lifes = 5;
     int win = 0;
+    int end_game = 0;
     int_array *matchsList = NULL;
-    while(lifes > 0)
+    while(end_game == 0)
     {
         system("clear");
         printf("%s\n",wordToShow);
 
         char letter[2];
-        printf("Tienes %d oportunidades y vas por %d aciertos. ¿letra?-> ",lifes,win);
+        printf("Tienes %d oportunidades y vas por %d aciertos de %d. ¿letra?-> ",lifes,win,total_chars);
         scanf("%s",letter);
         letter[strcspn(letter, "\n")] = '\0'; // \0 Elimina el carácter de nueva línea
 
-        //show existing char
          if (exists_char_on_string(wordToShow,letter) == 0)
          {
              lifes--;
-             printf("LO SIENTO , YA HABIAS ESCRITO ESA LETRA, te quedan %d oportunidades\n",lifes);
          }
          else
          {
@@ -64,14 +63,16 @@ int main(int argc, char const *argv[])
                 }
 
                 //check if user win
-                if(win == total_chars){
+                char *check_hidden_chars = NULL; 
+                check_hidden_chars = strchr(wordToShow , '*' );
+                if(check_hidden_chars == NULL){
                     printf("BIEN !! HAS GANADO!!\n");
-                    break;
+                    end_game = 1;
                 }
 
                 if(lifes == 0){
                     printf("PERDISTE :(\n");
-                    break;
+                    end_game = 1;
                 }
         }
     };

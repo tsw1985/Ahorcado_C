@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include "../header/gstring.h"
 
-int_array *index_of(char *wordToSearch , char *letter){
+int_array *index_of(char *wordToSearch , char *letter)
+{
 
     struct int_array *_int_array;
     int total_chars = strlen(wordToSearch);
@@ -37,9 +38,11 @@ int_array *index_of(char *wordToSearch , char *letter){
     return _int_array;
 }
 
-int exists_char_on_string(char *string_to_search, char *letter){
+int exists_char_on_string(char *string_to_search, char *letter)
+{
     int exists = -1;
-    for(int i=0 ; i < (int)strlen(string_to_search) ; i++){
+    for(int i=0 ; i < (int)strlen(string_to_search) ; i++)
+    {
         if (string_to_search[i] == letter[0]){
             exists = 0;
             break;
