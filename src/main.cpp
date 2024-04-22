@@ -45,6 +45,7 @@ int main(int argc, char const *argv[])
         printf("Tienes %d oportunidades y vas por %d aciertos de %d. ¿letra?-> ",lifes,win,total_chars);
         scanf("%s",letter);
         letter[strcspn(letter, "\n")] = '\0'; // \0 Elimina el carácter de nueva línea
+        letter[strcspn(letter, "\0")] = '\0'; // \0 Elimina el carácter de nueva línea
 
          if (exists_char_on_string(word_to_show,letter) == 0)
          {
