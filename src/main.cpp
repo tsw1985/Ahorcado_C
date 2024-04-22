@@ -10,26 +10,30 @@ int main(int argc, char const *argv[])
 {
 
     system("clear");
-    printf("Bienvenido al juego del ahorcado. Tienes 5 oportunidades. Introduce la palabra\n");
+    printf("Bienvenidoooo al juego del ahorcado. Tienes 5 oportunidades. Introduce una palabra: ");
     char wordToPlay[50];
     char wordToShow[50];
+    int total_chars = 0;
 
     scanf("%s",wordToPlay);
     memset(wordToShow,'*',strlen(wordToPlay)); // rellenamos de *
     wordToPlay[strcspn(wordToPlay, "\n")] = '\0'; // Elimina el carácter de nueva línea
 
     system("clear");
-    printf("Tienes que averiguar %d letras\n",(int)strlen(wordToShow));
+
+    total_chars = (int)strlen(wordToShow);
+
+    printf("Tienes que averiguar %d letras\n", total_chars);
     int lifes = 5;
     int win = 0;
     int_array *matchsList = NULL;
     while(lifes > 0)
     {
-
+        system("clear");
         printf("%s\n",wordToShow);
 
         char letter[2];
-        printf("Tienes %d oportunidades. ¿letra?-> ",lifes);
+        printf("Tienes %d oportunidades y vas por %d aciertos. ¿letra?-> ",lifes,win);
         scanf("%s",letter);
         letter[strcspn(letter, "\n")] = '\0'; // \0 Elimina el carácter de nueva línea
 
@@ -42,23 +46,17 @@ int main(int argc, char const *argv[])
          else
          {
 
-            //list of matchs
             matchsList = index_of(wordToPlay,letter);
             if(matchsList != NULL){
                 
-                //for(int i=0 ; i < matchsList->size ; i++){
-                //    printf("INDEX %d\n",matchsList->array_pointer[i]);
-                //}
-                
-
                 int exists_match = 0;
                 for(int index_match_list = 0 ; index_match_list < matchsList->size ; index_match_list++){
-                        int match = matchsList->array_pointer[index_match_list];
-                        if(match != -1){
-                            exists_match = 1;
-                            wordToShow[match] = letter[0];
-                            win++;
-                        }
+                    int match = matchsList->array_pointer[index_match_list];
+                    if(match != -1){
+                        exists_match = 1;
+                        wordToShow[match] = letter[0];
+                        win++;
+                    }
                 }
 
                 if(exists_match == 0){
@@ -66,8 +64,13 @@ int main(int argc, char const *argv[])
                 }
 
                 //check if user win
-                if(win == (int)strlen(wordToShow)){
+                if(win == total_chars){
                     printf("BIEN !! HAS GANADO!!\n");
+                    break;
+                }
+
+                if(lifes == 0){
+                    printf("PERDISTE :(\n");
                     break;
                 }
         }
