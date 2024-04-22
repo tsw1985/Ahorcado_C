@@ -16,8 +16,6 @@ int main(int argc, char const *argv[])
     int total_chars = 0;
 
     scanf("%s",word_to_play);
-    //clean_world_end_rare_symbol(word_to_play);
-    //clean_world_end_rare_symbol(word_to_show);
     word_to_play[strcspn(word_to_play, "\n")] = '\0';
     word_to_show[strcspn(word_to_play, "\0")] = '\0';
     word_to_show[strcspn(word_to_show, "\n")] = '\0';

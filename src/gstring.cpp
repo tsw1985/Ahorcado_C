@@ -54,9 +54,3 @@ int exists_char_on_string(char *string_to_search, char *letter)
     }
     return exists;
 }
-
-void clean_world_end_rare_symbol(char *_word){
-    _word[strcspn(_word, "\n")] = '\0'; // remove end line before press enter key
-    _word[strcspn(_word, "\0")] = '\0';
-    //return _word;
-}
