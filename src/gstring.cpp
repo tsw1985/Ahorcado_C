@@ -50,3 +50,8 @@ int exists_char_on_string(char *string_to_search, char *letter)
     }
     return exists;
 }
+
+void remove_tail_rare_symbols(char _word[]) {
+    _word[strcspn(_word, "\n")] = '\0';
+    _word[strcspn(_word, "\0")] = '\0';
+}

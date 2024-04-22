@@ -9,7 +9,6 @@
 //How to compile ? write "make clean ; make" . Later enter to /bin folder and play
 int main(int argc, char const *argv[])
 {
-
     system("clear");
     printf("Bienvenido al juego del ahorcado. Tienes 5 oportunidades. Introduce una palabra: ");
     char word_to_play[200];
@@ -17,10 +16,8 @@ int main(int argc, char const *argv[])
     int total_chars = 0;
 
     scanf("%s",word_to_play);
-    word_to_play[strcspn(word_to_play, "\n")] = '\0';
-    word_to_show[strcspn(word_to_play, "\0")] = '\0';
-    word_to_show[strcspn(word_to_show, "\n")] = '\0';
-    word_to_show[strcspn(word_to_show, "\0")] = '\0';
+    remove_tail_rare_symbols(word_to_play);
+    remove_tail_rare_symbols(word_to_show);
 
     memset(word_to_show,'*',strlen(word_to_play));
 
@@ -44,8 +41,7 @@ int main(int argc, char const *argv[])
         char letter[2];
         printf("Tienes %d oportunidades y vas por %d aciertos de %d. ¿letra?-> ",lifes,win,total_chars);
         scanf("%s",letter);
-        letter[strcspn(letter, "\n")] = '\0'; // \0 Elimina el carácter de nueva línea
-        letter[strcspn(letter, "\0")] = '\0'; // \0 Elimina el carácter de nueva línea
+        remove_tail_rare_symbols(letter);
 
          if (exists_char_on_string(word_to_show,letter) == 0)
          {
