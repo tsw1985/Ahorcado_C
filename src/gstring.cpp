@@ -3,11 +3,15 @@
 #include <stdio.h>
 #include "../header/gstring.h"
 
-int_array *index_of(char *wordToSearch , char *letter)
+int_array *index_of(char *word_to_search , char *letter)
 {
 
-    struct int_array *_int_array;
-    int total_chars = strlen(wordToSearch);
+    int_array *_int_array;
+    _int_array->array_pointer = (int*) calloc(1, sizeof(int));
+    _int_array->size = 0;
+
+
+    int total_chars = strlen(word_to_search);
 
     // set size of list.
     _int_array->size = total_chars;
@@ -26,7 +30,7 @@ int_array *index_of(char *wordToSearch , char *letter)
         int position = -1;
         int index = 0;
         for(int i=0 ; i < _int_array->size ; i++){
-            if(wordToSearch[i] == letter[0]) {
+            if(word_to_search[i] == letter[0]) {
                 position = i;
                 _int_array->array_pointer[i] = position;
                 index++;
