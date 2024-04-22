@@ -3,30 +3,38 @@
 #include <stdio.h>
 #include "../header/gstring.h"
 
-int *index_of(char *wordToSearch , char *letter){
+int_array *index_of(char *wordToSearch , char *letter){
 
-    int *ocurrencesList = NULL;
-    ocurrencesList = (int*) calloc(sizeof(wordToSearch) , sizeof(int));
-    //set to -1 all matchs
-    for(int i=0 ; i < (int)strlen(wordToSearch) ; i++){
-        ocurrencesList[i] = -1;
-    }
+    struct int_array *_int_array;
+    int total_chars = strlen(wordToSearch);
 
-    int position = -1;
-    int index = 0;
-    for(int i=0 ; i < (int)strlen(wordToSearch) ; i++){
-        if(wordToSearch[i] == letter[0]) {
-            position = i;
-            //printf("POSICIONES ENCONTRADAS %d\n",position);
-            //add match on list
-            //ocurrencesList = (int*)realloc(ocurrencesList,1 * sizeof(int));
-            ocurrencesList[index] = position;
-            index++;
+    // set size of list.
+    _int_array->size = total_chars;
+    
+    //prepare list pointe
+    int *ocurrences_list_pointer = NULL;
+    ocurrences_list_pointer = (int*) malloc(total_chars * sizeof(int));
+    if(ocurrences_list_pointer != NULL){
+
+        _int_array->array_pointer = ocurrences_list_pointer;
+        for(int i=0 ; i < _int_array->size; i++){
+            //set to -1 all matchs
+            _int_array->array_pointer[i] = -1;
         }
 
+        int position = -1;
+        int index = 0;
+        for(int i=0 ; i < _int_array->size ; i++){
+            if(wordToSearch[i] == letter[0]) {
+                position = i;
+                _int_array->array_pointer[i] = position;
+                index++;
+            }
+
+        }
     }
 
-    return ocurrencesList;
+    return _int_array;
 }
 
 int exists_char_on_string(char *string_to_search, char *letter){
