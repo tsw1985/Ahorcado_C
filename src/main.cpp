@@ -6,6 +6,7 @@
 #define TRUE 1
 #define FALSE 0 
 
+//How to compile ? write "make clean ; make" . Later enter to /bin folder and play
 int main(int argc, char const *argv[])
 {
 
